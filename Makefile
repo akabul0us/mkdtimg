@@ -1,12 +1,13 @@
-CC = clang
-CXX = clang++
-STRIP = llvm-strip
+CC = x86_64-linux-musl-gcc
+CXX = x86_64-linux-musl-g++
+LD = x86_64-linux-musl-ld
+STRIP = x86_64-linux-musl-strip
 SHELL = bash
 
-CFLAGS = -Wall -Werror -Wno-char-subscripts
+CFLAGS = -Wall -Werror -Wno-char-subscripts -static -fPIC
 STRIPFLAGS = --strip-all
-LDFLAGS = 
-INCLUDES = -Idtc-aosp/libfdt
+LDFLAGS = -L/opt/toolchains/x86_64-linux-musl-native/lib -static -fPIE
+INCLUDES = -Idtc-aosp/libfdt -I/opt/toolchains/x86_64-linux-musl-native/include
 MKDTIMG_SRC = libufdt/mkdtimg.c \
               libufdt/mkdtimg_cfg_create.c \
               libufdt/mkdtimg_core.c \
