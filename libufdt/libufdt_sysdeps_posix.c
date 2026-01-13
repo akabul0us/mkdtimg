@@ -21,6 +21,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifndef DTO_DISABLE_DEFAULT_POSIX_LIBC_PRINT
 int dto_print(const char *fmt, ...) {
   int err;
 
@@ -31,15 +32,18 @@ int dto_print(const char *fmt, ...) {
 
   return err;
 }
+#endif
 
 void dto_qsort(void *base, size_t nmemb, size_t size,
                int (*compar)(const void *, const void *)) {
   qsort(base, nmemb, size, compar);
 }
 
+#ifndef DTO_DISABLE_DEFAULT_POSIX_LIBC_ALLOCATION
 void *dto_malloc(size_t size) { return malloc(size); }
 
 void dto_free(void *ptr) { free(ptr); }
+#endif
 
 char *dto_strchr(const char *s, int c) { return strchr(s, c); }
 
